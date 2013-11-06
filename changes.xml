@@ -1,0 +1,13 @@
+<document>
+  <properties>
+    <title>Changes - tableConverter for FreeEMS</title>
+    <author>AiToR51</author>
+  </properties>
+  <body>
+    <release version="0.1" date="2013-11-07" description="First Release">
+      <action dev="AiToR51" type="add">
+        First Version. Tested with EMStudio StableTwo-84-gad3fd6e
+      </action>
+    </release>
+  </body>
+</document>
