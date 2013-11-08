@@ -30,16 +30,16 @@ public class Table3D extends Table {
 					System.out.print(this.getTableType().getDataType() + "(" + value + "),");
 				}
 			}
-			System.out.println(" // " + this.getAxle(Constants.AXLE_Y).get(i).replaceAll("[.]0+", ""));
+			System.out.println(" // " + this.getAxis(Constants.AXIS_Y).get(i).replaceAll("[.]0+", ""));
 		}
 		System.out.print("//");
-		for (int v = 0; v < this.getAxle(Constants.AXLE_X).size(); v++) {
-			String value = this.getAxle(Constants.AXLE_X).get(v);
+		for (int v = 0; v < this.getAxis(Constants.AXIS_X).size(); v++) {
+			String value = this.getAxis(Constants.AXIS_X).get(v);
 			value = value.replaceAll("[.]0+", "");
 			for (int s = 0 ; s < this.getTableType().getDataType().length() + (v > 0?2:0) + maxSize - value.length(); s++) {
 				System.out.print(" ");
 			}
-			if (v < this.getAxle(Constants.AXLE_X).size() - 1) {
+			if (v < this.getAxis(Constants.AXIS_X).size() - 1) {
 				System.out.print(value + ",");
 			} else {
 				System.out.print(value);

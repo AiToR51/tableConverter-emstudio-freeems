@@ -8,13 +8,13 @@ public abstract class Table {
 	private final int dimensions;
 	private final TableType tableType;
 	
-	//axle name, axle values
-	private HashMap<String,LinkedList<String>> axleInfo;
+	//axis name, axis values
+	private HashMap<String,LinkedList<String>> axisInfo;
 	
 	public Table(int dimensions, TableType tableType) {
 		this.dimensions = dimensions;
 		this.tableType = tableType;
-		axleInfo = new HashMap<String,LinkedList<String>>();
+		axisInfo = new HashMap<String,LinkedList<String>>();
 	}
 	
 	public abstract String printFreeEMSTable();
@@ -27,13 +27,13 @@ public abstract class Table {
 		return tableType;
 	}
 	
-	public void insertAxle(String axleName, LinkedList<String> values) {
-		this.axleInfo.put(axleName, values);
+	public void insertAxis(String axisName, LinkedList<String> values) {
+		this.axisInfo.put(axisName, values);
 	}
 	
-	public LinkedList<String> getAxle(String axleName) {
-		if (this.axleInfo.containsKey(axleName)) {
-			return this.axleInfo.get(axleName);
+	public LinkedList<String> getAxis(String axisName) {
+		if (this.axisInfo.containsKey(axisName)) {
+			return this.axisInfo.get(axisName);
 		} else {
 			return null;
 		}
