@@ -14,7 +14,7 @@ public class Main {
 			
 			File inputFile = new File(inputFileName);
 			if (!inputFile.exists()) {
-				System.out.println("The file '" + inputFileName + "' don't exists.");
+				System.out.println("The file '" + inputFileName + "' doesn't exists.");
 				return;
 			}
 			boolean decimals = true;

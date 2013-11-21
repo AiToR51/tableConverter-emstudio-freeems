@@ -16,7 +16,8 @@ public class Table3D extends Table {
 
 	@Override
 	public String printFreeEMSTable(boolean decimals) {
-		int maxSize = getMaxSize(decimals) + 1; 
+//		int maxSize = getMaxSize(decimals) + 1; 
+		int maxSize = this.getTableType().getBlockSize();
 		for (int i = data.size() -1 ; i >= 0; i--) {
 			LinkedList<String> row = data.get(i);
 			for (int j = 0; j < row.size(); j++) {
@@ -26,7 +27,9 @@ public class Table3D extends Table {
 				} else {
 					value = row.get(j);
 				}
-				for (int s = 0 ; s < maxSize - value.length(); s++) {
+				//value lenght + () + data type
+				int usedLength = value.length() + 2 + this.getTableType().getDataType().length();
+				for (int s = 0 ; s < maxSize - usedLength; s++) {
 					System.out.print(" ");
 				}
 				if ( i == 0 && j == (row.size() - 1)) {
@@ -41,7 +44,7 @@ public class Table3D extends Table {
 		for (int v = 0; v < this.getAxis(Constants.AXIS_X).size(); v++) {
 			String value = this.getAxis(Constants.AXIS_X).get(v);
 			value = value.replaceAll("[.]0+", "");
-			for (int s = 0 ; s < this.getTableType().getDataType().length() + (v > 0?2:0) + maxSize - value.length(); s++) {
+			for (int s = 0 ; s <  + (v > 0?2:0) + maxSize - value.length() - this.getTableType().getDataType().length(); s++) {
 				System.out.print(" ");
 			}
 			if (v < this.getAxis(Constants.AXIS_X).size() - 1) {
