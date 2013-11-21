@@ -2,9 +2,9 @@ package org.freeems.tableConverter.model.types;
 
 public enum TableType {
 
-	VE_TABLE(1, "VE",9),
-	TIMING_TABLE(2, "IT",9),
-	LAMBDA_TABLE(3, "LR",9);
+	VE_TABLE(1, "VE",7),
+	TIMING_TABLE(2, "IT",7),
+	LAMBDA_TABLE(3, "LR",7);
 	
 	private final int id;
 	private final String dataType;

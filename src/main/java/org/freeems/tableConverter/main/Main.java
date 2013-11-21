@@ -17,16 +17,14 @@ public class Main {
 				System.out.println("The file '" + inputFileName + "' doesn't exists.");
 				return;
 			}
-			boolean decimals = true;
-			//hack for Fred to don't have decimals
-			if (args.length == 2 && args[1].equalsIgnoreCase("-noDecimals")) {
-				decimals = false;
-			}
+			boolean decimals = getDecimals(args);
+			int extraSpaces = getExtraSpaces(args);
+
 			EMStudioTableParser parser = new EMStudioTableParser(inputFileName);
 			
 			Table table = parser.parseFile();
 			if (table != null) {
-				table.printFreeEMSTable(decimals);
+				table.printFreeEMSTable(decimals, extraSpaces);
 			}
 		
 			
@@ -37,6 +35,25 @@ public class Main {
 	
 	public static void printHelp() {
 		System.out.println("Use: \n" 
-				+ "\tjava -jar tableConverter.jar input.json [-noDecimals]");
+				+ "\tjava -jar tableConverter.jar input.json [-noDecimals] [-extraSpaces=2]");
+	}
+	
+	private static boolean getDecimals(String args[]) {
+		for (String s : args) {
+			if (s.equalsIgnoreCase("-noDecimals")) {
+				return false;
+			}
+		}
+		return true;
+	}
+	private static int getExtraSpaces(String args[]) {
+		int extraSpaces = 1;
+		for (String s : args) {
+			if (s.startsWith("-extraSpaces=")) {
+				extraSpaces = Integer.parseInt(s.substring(13));
+			}
+		}
+		
+		return extraSpaces;
 	}
 }

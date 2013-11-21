@@ -11,7 +11,7 @@ public class Table2D extends Table{
 
 	
 	@Override
-	public String printFreeEMSTable(boolean decimals) {
+	public String printFreeEMSTable(boolean decimals, int extraSpaces) {
 		// TODO Auto-generated method stub
 		return null;
 	}

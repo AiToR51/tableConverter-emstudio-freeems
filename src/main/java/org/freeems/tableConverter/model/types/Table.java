@@ -17,7 +17,7 @@ public abstract class Table {
 		axisInfo = new HashMap<String,LinkedList<String>>();
 	}
 	
-	public abstract String printFreeEMSTable(boolean decimals);
+	public abstract String printFreeEMSTable(boolean decimals, int extraSpaces);
 
 	public int getDimensions() {
 		return dimensions;

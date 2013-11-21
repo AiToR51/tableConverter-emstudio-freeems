@@ -15,9 +15,10 @@ public class Table3D extends Table {
 	}
 
 	@Override
-	public String printFreeEMSTable(boolean decimals) {
-//		int maxSize = getMaxSize(decimals) + 1; 
-		int maxSize = this.getTableType().getBlockSize();
+	public String printFreeEMSTable(boolean decimals, int extraSpaces) {
+		int maxSize = getMaxSize(decimals) + 2 + extraSpaces; 
+//		int maxSize = this.getTableType().getBlockSize();
+		printAxis(maxSize, true);
 		for (int i = data.size() -1 ; i >= 0; i--) {
 			LinkedList<String> row = data.get(i);
 			for (int j = 0; j < row.size(); j++) {
@@ -28,7 +29,7 @@ public class Table3D extends Table {
 					value = row.get(j);
 				}
 				//value lenght + () + data type
-				int usedLength = value.length() + 2 + this.getTableType().getDataType().length();
+				int usedLength = value.length() + 2;
 				for (int s = 0 ; s < maxSize - usedLength; s++) {
 					System.out.print(" ");
 				}
@@ -38,13 +39,25 @@ public class Table3D extends Table {
 					System.out.print(this.getTableType().getDataType() + "(" + value + "),");
 				}
 			}
-			System.out.println(" // " + truncateDecimals(this.getAxis(Constants.AXIS_Y).get(i)));
+			
+			System.out.print(" //");
+			String yAxisValue = truncateDecimals(this.getAxis(Constants.AXIS_Y).get(i));
+			for (int y = 0; y < 4 - yAxisValue.length(); y++) {
+				System.out.print(" ");
+			}
+			System.out.println(yAxisValue + "kPa");
 		}
+		printAxis(maxSize, false);
+		return ""; //future version could return the String of all data to save it to a file
+	}
+	
+	private void printAxis(int maxSize, boolean top) {
 		System.out.print("//");
 		for (int v = 0; v < this.getAxis(Constants.AXIS_X).size(); v++) {
 			String value = this.getAxis(Constants.AXIS_X).get(v);
 			value = value.replaceAll("[.]0+", "");
-			for (int s = 0 ; s <  + (v > 0?2:0) + maxSize - value.length() - this.getTableType().getDataType().length(); s++) {
+			//(v > 0?0:-2) is to help in first print with comment.
+			for (int s = 0 ; s < (v > 0?0:-2) + maxSize - value.length() +2 ; s++) {
 				System.out.print(" ");
 			}
 			if (v < this.getAxis(Constants.AXIS_X).size() - 1) {
@@ -53,8 +66,8 @@ public class Table3D extends Table {
 				System.out.print(value);
 			}
 		}
-		System.out.println();
-		return ""; //future version could return the String of all data to save it to a file
+		String end = top? "Vacuum":"Boost";
+		System.out.println("  // " + end);
 	}
 
 	private int getMaxSize(boolean decimals) {

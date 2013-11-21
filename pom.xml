@@ -4,7 +4,7 @@
 	<groupId>org.freeems</groupId>
 	<artifactId>tableConverter</artifactId>
 	<packaging>jar</packaging>
-	<version>0.3</version>
+	<version>0.4</version>
 	<repositories>
 		<repository>
 			<id>central</id>
