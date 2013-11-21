@@ -8,7 +8,7 @@ import org.freeems.tableConverter.parser.EMStudioTableParser;
 public class Main {
 
 	public static void main(String args[]) {
-		if (args.length == 1 ) {
+		if (args.length >= 1 ) {
 			String inputFileName = args[0];
 			
 			
@@ -17,11 +17,16 @@ public class Main {
 				System.out.println("The file '" + inputFileName + "' don't exists.");
 				return;
 			}
+			boolean decimals = true;
+			//hack for Fred to don't have decimals
+			if (args.length == 2 && args[1].equalsIgnoreCase("-noDecimals")) {
+				decimals = false;
+			}
 			EMStudioTableParser parser = new EMStudioTableParser(inputFileName);
 			
 			Table table = parser.parseFile();
 			if (table != null) {
-				table.printFreeEMSTable();
+				table.printFreeEMSTable(decimals);
 			}
 		
 			
@@ -32,6 +37,6 @@ public class Main {
 	
 	public static void printHelp() {
 		System.out.println("Use: \n" 
-				+ "\tjava -jar tableConverter.jar input.json");
+				+ "\tjava -jar tableConverter.jar input.json [-noDecimals]");
 	}
 }

@@ -15,12 +15,17 @@ public class Table3D extends Table {
 	}
 
 	@Override
-	public String printFreeEMSTable() {
-		int maxSize = getMaxSize() + 1; 
+	public String printFreeEMSTable(boolean decimals) {
+		int maxSize = getMaxSize(decimals) + 1; 
 		for (int i = data.size() -1 ; i >= 0; i--) {
 			LinkedList<String> row = data.get(i);
 			for (int j = 0; j < row.size(); j++) {
-				String value = row.get(j);
+				String value;
+				if (!decimals) {
+					value = truncateDecimals(row.get(j));
+				} else {
+					value = row.get(j);
+				}
 				for (int s = 0 ; s < maxSize - value.length(); s++) {
 					System.out.print(" ");
 				}
@@ -30,7 +35,7 @@ public class Table3D extends Table {
 					System.out.print(this.getTableType().getDataType() + "(" + value + "),");
 				}
 			}
-			System.out.println(" // " + this.getAxle(Constants.AXLE_Y).get(i).replaceAll("[.]0+", ""));
+			System.out.println(" // " + truncateDecimals(this.getAxle(Constants.AXLE_Y).get(i)));
 		}
 		System.out.print("//");
 		for (int v = 0; v < this.getAxle(Constants.AXLE_X).size(); v++) {
@@ -49,15 +54,20 @@ public class Table3D extends Table {
 		return ""; //future version could return the String of all data to save it to a file
 	}
 
-	private int getMaxSize() {
+	private int getMaxSize(boolean decimals) {
 		int maxSize = 0;
 		for (LinkedList<String> row : this.data) {
 			for (String value : row) {
-				if (value.length() > maxSize) {
-					maxSize = value.length();
+				int length = decimals? value.length(): truncateDecimals(value).length();
+				if (length > maxSize) {
+					maxSize = length;
 				}
 			}
 		}
 		return maxSize;
+	}
+	
+	private String truncateDecimals(String number) {
+		return number.replaceAll("[.]0+", "");
 	}
 }

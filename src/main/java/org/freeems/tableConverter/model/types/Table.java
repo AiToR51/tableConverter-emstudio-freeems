@@ -17,7 +17,7 @@ public abstract class Table {
 		axleInfo = new HashMap<String,LinkedList<String>>();
 	}
 	
-	public abstract String printFreeEMSTable();
+	public abstract String printFreeEMSTable(boolean decimals);
 
 	public int getDimensions() {
 		return dimensions;

@@ -9,5 +9,10 @@
         First Version. Tested with EMStudio StableTwo-84-gad3fd6e
       </action>
     </release>
+    <release version="0.2" date="2013-11-21" description="First Release">
+      <action dev="AiToR51" type="add">
+        New CLI option to dont use decimals. Tested with EMStudio StableTwo-84-gad3fd6e
+      </action>
+    </release>
   </body>
 </document>
