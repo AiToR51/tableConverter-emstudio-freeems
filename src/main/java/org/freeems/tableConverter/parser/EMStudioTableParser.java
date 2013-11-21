@@ -58,7 +58,6 @@ public class EMStudioTableParser {
 			;
 			try {
 				Map json = (Map) parser.parse(text, containerFactory);
-				System.out.println("//Analyzing table: " + json.get("title"));
 					if (json.containsKey(Constants.TABLE_3D)) {
 						
 						LinkedList<String> axisX = (LinkedList<String>) ((Map) json.get("X"))
