@@ -68,6 +68,6 @@ public class Table3D extends Table {
 	}
 	
 	private String truncateDecimals(String number) {
-		return number.replaceAll("[.]0+", "");
+		return number.replaceAll("[.][0-9]+", "");
 	}
 }
