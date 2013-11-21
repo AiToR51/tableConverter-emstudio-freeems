@@ -61,9 +61,9 @@ public class EMStudioTableParser {
 				System.out.println("//Analyzing table: " + json.get("title"));
 					if (json.containsKey(Constants.TABLE_3D)) {
 						
-						LinkedList<String> axleX = (LinkedList<String>) ((Map) json.get("X"))
+						LinkedList<String> axisX = (LinkedList<String>) ((Map) json.get("X"))
 								.get("values");
-						LinkedList<String> axleY = (LinkedList<String>) ((Map) json.get("Y"))
+						LinkedList<String> axisY = (LinkedList<String>) ((Map) json.get("Y"))
 								.get("values");
 						Map data = (Map) json.get("Z");
 						String unit = (String) data.get("unit");
@@ -81,8 +81,8 @@ public class EMStudioTableParser {
 
 						table = new Table3D(tableType, (LinkedList<LinkedList<String>>) data
 								.get("values"));
-						table.insertAxle("X", axleX);
-						table.insertAxle("Y", axleY);
+						table.insertAxis("X", axisX);
+						table.insertAxis("Y", axisY);
 						return table;
 					} else if (json.containsKey(Constants.TABLE_2D)) {
 						System.out.println("currently not supported 2D tables");
