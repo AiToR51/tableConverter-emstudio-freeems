@@ -9,13 +9,13 @@ import org.freeems.tableConverter.model.types.TableType;
 public class Table3D extends Table {
 
 	final private LinkedList<LinkedList<String>> data;
-	public Table3D(TableType tableType, LinkedList<LinkedList<String>> data) {
-		super(2, tableType);
+	public Table3D(TableType tableType, String metaTitle, LinkedList<LinkedList<String>> data) {
+		super(2, tableType, metaTitle);
 		this.data = data;
 	}
 
 	@Override
-	public String printFreeEMSTable(boolean decimals, int extraSpaces) {
+	public String printFreeEMSTable(boolean decimals, int extraSpaces, boolean showMetaData) {
 		int maxSize = getMaxSize(decimals) + 2 + extraSpaces; 
 //		int maxSize = this.getTableType().getBlockSize();
 		printAxis(maxSize, true);
@@ -48,6 +48,12 @@ public class Table3D extends Table {
 			System.out.println(yAxisValue + "kPa");
 		}
 		printAxis(maxSize, false);
+		
+		if (showMetaData) {
+			System.out.println("\nDumping MetaData.");
+			System.out.println("Table Title: " + this.getTitle());
+			printAxisMetaInfo();
+		}
 		return ""; //future version could return the String of all data to save it to a file
 	}
 	

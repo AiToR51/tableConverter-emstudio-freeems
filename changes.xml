@@ -15,5 +15,15 @@
         change nomenclature axle to axis.
       </action>
     </release>
+    <release version="0.5" date="2013-11-21">
+      <action dev="AiToR51" type="add">
+        Update to Fred output style.
+      </action>
+    </release>
+    <release version="0.6" date="2013-12-10">
+      <action dev="AiToR51" type="add">
+        New CLI option to print metaInfo.
+      </action>
+    </release>
   </body>
 </document>

@@ -19,12 +19,12 @@ public class Main {
 			}
 			boolean decimals = getDecimals(args);
 			int extraSpaces = getExtraSpaces(args);
-
+			boolean dumpMetaData = getDumpMetaData(args);
 			EMStudioTableParser parser = new EMStudioTableParser(inputFileName);
 			
 			Table table = parser.parseFile();
 			if (table != null) {
-				table.printFreeEMSTable(decimals, extraSpaces);
+				table.printFreeEMSTable(decimals, extraSpaces, dumpMetaData);
 			}
 		
 			
@@ -35,7 +35,7 @@ public class Main {
 	
 	public static void printHelp() {
 		System.out.println("Use: \n" 
-				+ "\tjava -jar tableConverter.jar input.json [-noDecimals] [-extraSpaces=2]");
+				+ "\tjava -jar tableConverter.jar input.json [-noDecimals] [-extraSpaces=2] [-dump-meta-data]");
 	}
 	
 	private static boolean getDecimals(String args[]) {
@@ -55,5 +55,14 @@ public class Main {
 		}
 		
 		return extraSpaces;
+	}
+	
+	private static boolean getDumpMetaData(String args[]) {
+		for (String s : args) {
+			if (s.equalsIgnoreCase("-dump-meta-data")) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

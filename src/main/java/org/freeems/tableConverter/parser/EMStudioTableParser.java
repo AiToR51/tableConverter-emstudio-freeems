@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.freeems.tableConverter.model.types.AxisMetaInfo;
 import org.freeems.tableConverter.model.types.Constants;
 import org.freeems.tableConverter.model.types.Table;
 import org.freeems.tableConverter.model.types.TableType;
@@ -62,9 +63,22 @@ public class EMStudioTableParser {
 						
 						LinkedList<String> axisX = (LinkedList<String>) ((Map) json.get("X"))
 								.get("values");
+						AxisMetaInfo axisXMetaInfo = new AxisMetaInfo(Constants.AXIS_X,
+								(String)((Map) json.get("X"))
+								.get("label"), (String)((Map) json.get("X"))
+								.get("unit"));
 						LinkedList<String> axisY = (LinkedList<String>) ((Map) json.get("Y"))
 								.get("values");
+						AxisMetaInfo axisYMetaInfo = new AxisMetaInfo(Constants.AXIS_Y,
+								(String)((Map) json.get("Y"))
+								.get("label"), (String)((Map) json.get("Y"))
+								.get("unit"));
+						
 						Map data = (Map) json.get("Z");
+						
+						AxisMetaInfo axisZMetaInfo = new AxisMetaInfo(Constants.AXIS_Z,
+								(String) data.get("label"), (String) data.get("unit"));
+						
 						String unit = (String) data.get("unit");
 						TableType tableType;
 						if (unit.equalsIgnoreCase(Constants.TABLE_VE)) {
@@ -78,27 +92,28 @@ public class EMStudioTableParser {
 							return null;
 						}
 
-						table = new Table3D(tableType, (LinkedList<LinkedList<String>>) data
+						table = new Table3D(tableType, (String) json.get("title"), (LinkedList<LinkedList<String>>) data
 								.get("values"));
-						table.insertAxis("X", axisX);
-						table.insertAxis("Y", axisY);
+						table.insertAxis(Constants.AXIS_X, axisX, axisXMetaInfo);
+						table.insertAxis(Constants.AXIS_Y, axisY, axisYMetaInfo);
+						table.setDataMetaInfo(axisZMetaInfo);
 						return table;
 					} else if (json.containsKey(Constants.TABLE_2D)) {
 						System.out.println("currently not supported 2D tables");
 						return null;
 					}
 				
-				Iterator iter = json.entrySet().iterator();
-				while (iter.hasNext()) {
-					Map.Entry entry = (Map.Entry) iter.next();
-					System.out.println(entry.getKey() + "=>" + entry.getValue() + "|"
-							+ entry.getKey().getClass());
-					if (entry.getKey().equals("X") || entry.getKey().equals("Y")
-							|| entry.getKey().equals("Z")) {
-						Object o = ((HashMap) entry.getValue()).get("values");
-						System.out.println(o + " " + o.getClass());
-					}
-				}
+//				Iterator iter = json.entrySet().iterator();
+//				while (iter.hasNext()) {
+//					Map.Entry entry = (Map.Entry) iter.next();
+//					System.out.println(entry.getKey() + "=>" + entry.getValue() + "|"
+//							+ entry.getKey().getClass());
+//					if (entry.getKey().equals("X") || entry.getKey().equals("Y")
+//							|| entry.getKey().equals("Z")) {
+//						Object o = ((HashMap) entry.getValue()).get("values");
+//						System.out.println(o + " " + o.getClass());
+//					}
+//				}
 			} catch (ParseException pe) {
 				System.out.println(pe);
 			}
