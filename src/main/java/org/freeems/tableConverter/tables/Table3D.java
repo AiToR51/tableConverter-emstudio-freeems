@@ -16,7 +16,7 @@ public class Table3D extends Table {
 
 	@Override
 	public String printFreeEMSTable(boolean decimals, int extraSpaces, boolean showMetaData) {
-		int maxSize = getMaxSize(decimals) + 2 + extraSpaces; 
+		int maxSize = getMaxSize(decimals) + 2 + extraSpaces;
 //		int maxSize = this.getTableType().getBlockSize();
 		printAxis(maxSize, true);
 		for (int i = data.size() -1 ; i >= 0; i--) {
@@ -39,7 +39,7 @@ public class Table3D extends Table {
 					System.out.print(this.getTableType().getDataType() + "(" + value + "),");
 				}
 			}
-			
+
 			System.out.print(" //");
 			String yAxisValue = truncateDecimals(this.getAxis(Constants.AXIS_Y).get(i));
 			for (int y = 0; y < 4 - yAxisValue.length(); y++) {
@@ -48,7 +48,7 @@ public class Table3D extends Table {
 			System.out.println(yAxisValue + "kPa");
 		}
 		printAxis(maxSize, false);
-		
+
 		if (showMetaData) {
 			System.out.println("\nDumping MetaData.");
 			System.out.println("Table Title: " + this.getTitle());
@@ -56,7 +56,7 @@ public class Table3D extends Table {
 		}
 		return ""; //future version could return the String of all data to save it to a file
 	}
-	
+
 	private void printAxis(int maxSize, boolean top) {
 		System.out.print("//");
 		for (int v = 0; v < this.getAxis(Constants.AXIS_X).size(); v++) {
@@ -88,7 +88,7 @@ public class Table3D extends Table {
 		}
 		return maxSize;
 	}
-	
+
 	private String truncateDecimals(String number) {
 		return number.replaceAll("[.][0-9]+", "");
 	}

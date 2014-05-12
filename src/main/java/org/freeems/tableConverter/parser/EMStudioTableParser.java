@@ -60,7 +60,7 @@ public class EMStudioTableParser {
 			try {
 				Map json = (Map) parser.parse(text, containerFactory);
 					if (json.containsKey(Constants.TABLE_3D)) {
-						
+
 						LinkedList<String> axisX = (LinkedList<String>) ((Map) json.get("X"))
 								.get("values");
 						AxisMetaInfo axisXMetaInfo = new AxisMetaInfo(Constants.AXIS_X,
@@ -73,12 +73,12 @@ public class EMStudioTableParser {
 								(String)((Map) json.get("Y"))
 								.get("label"), (String)((Map) json.get("Y"))
 								.get("unit"));
-						
+
 						Map data = (Map) json.get("Z");
-						
+
 						AxisMetaInfo axisZMetaInfo = new AxisMetaInfo(Constants.AXIS_Z,
 								(String) data.get("label"), (String) data.get("unit"));
-						
+
 						String unit = (String) data.get("unit");
 						TableType tableType;
 						if (unit.equalsIgnoreCase(Constants.TABLE_VE)) {
@@ -102,7 +102,7 @@ public class EMStudioTableParser {
 						System.out.println("currently not supported 2D tables");
 						return null;
 					}
-				
+
 //				Iterator iter = json.entrySet().iterator();
 //				while (iter.hasNext()) {
 //					Map.Entry entry = (Map.Entry) iter.next();

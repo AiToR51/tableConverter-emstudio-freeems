@@ -9,7 +9,7 @@ public class Table2D extends Table{
 		super(1, tableType,"");
 	}
 
-	
+
 	@Override
 	public String printFreeEMSTable(boolean decimals, int extraSpaces, boolean showMetaData) {
 		// TODO Auto-generated method stub

@@ -5,7 +5,7 @@ public class AxisMetaInfo {
 	private final String axisName;
 	private final String axisLabel;
 	private final String axisUnit;
-	
+
 	public AxisMetaInfo(String axisName, String axisLabel, String axisUnit) {
 		this.axisName = axisName;
 		this.axisLabel = axisLabel;
@@ -23,7 +23,4 @@ public class AxisMetaInfo {
 	public String getAxisUnit() {
 		return axisUnit;
 	}
-	
-	
-
 }
