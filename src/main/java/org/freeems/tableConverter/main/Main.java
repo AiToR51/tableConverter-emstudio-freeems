@@ -13,7 +13,7 @@ public class Main {
 
 			File inputFile = new File(inputFileName);
 			if (!inputFile.exists()) {
-				System.out.println("The file '" + inputFileName + "' doesn't exists.");
+				System.out.println("The file '" + inputFileName + "' doesn't exist.");
 				return;
 			}
 			boolean decimals = getDecimals(args);
@@ -43,6 +43,7 @@ public class Main {
 		}
 		return true;
 	}
+
 	private static int getExtraSpaces(String args[]) {
 		int extraSpaces = 1;
 		for (String s : args) {
