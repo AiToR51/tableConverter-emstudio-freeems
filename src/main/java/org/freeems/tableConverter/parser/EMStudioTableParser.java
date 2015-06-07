@@ -87,6 +87,8 @@ public class EMStudioTableParser {
 							tableType = TableType.TIMING_TABLE;
 						} else if (unit.equalsIgnoreCase(Constants.TABLE_LAMBDA)) {
 							tableType = TableType.LAMBDA_TABLE;
+						} else if (unit.equalsIgnoreCase(Constants.TABLE_ALPHAN)) {
+							tableType = TableType.ALPHAN_TABLE;
 						} else {
 							System.out.println("currently not supported this kind of tables");
 							return null;

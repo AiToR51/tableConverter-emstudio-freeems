@@ -4,7 +4,8 @@ public enum TableType {
 
 	VE_TABLE(1, "VE",7),
 	TIMING_TABLE(2, "IT",7),
-	LAMBDA_TABLE(3, "LR",7);
+	LAMBDA_TABLE(3, "LR",7),
+	ALPHAN_TABLE(4, "AF",7);
 
 	private final int id;
 	private final String dataType;

@@ -10,5 +10,6 @@ public class Constants {
 	public static String TABLE_VE = "VE";
 	public static String TABLE_LAMBDA = "Lambda";
 	public static String TABLE_TIMING = "Timing";
+	public static String TABLE_ALPHAN = "AirFlow %";
 
 }
